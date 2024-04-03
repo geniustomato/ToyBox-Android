@@ -6,41 +6,51 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.clooy.toybox.exhibit.ui.ExhibitViewModel
+import com.clooy.toybox.exhibit.ui.ExhibitsScreen
+import com.clooy.toybox.onboarding.ui.OnboardingScreen
 import com.clooy.toybox.ui.theme.ToyBoxTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             ToyBoxTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                ToyBoxApp(modifier = Modifier.fillMaxSize())
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+private fun ToyBoxApp(modifier: Modifier = Modifier) {
+    var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
+
+    Surface(
+        modifier = modifier, color = MaterialTheme.colorScheme.background
+    ) {
+        if (shouldShowOnboarding) {
+            OnboardingScreen(onContinueClicked = {
+                shouldShowOnboarding = false
+            })
+        } else {
+            ExhibitsScreen(viewModel = ExhibitViewModel())
+        }
+    }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 320)
 @Composable
-fun GreetingPreview() {
+fun ToyBoxAppPreview() {
     ToyBoxTheme {
-        Greeting("Android")
+        ToyBoxApp(modifier = Modifier.fillMaxSize())
     }
 }
