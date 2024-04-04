@@ -1,4 +1,4 @@
-package com.clooy.toybox.exhibit.ui
+package com.clooy.toybox.dashboard.exhibit.ui
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
@@ -32,18 +32,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.clooy.toybox.R
-import com.clooy.toybox.exhibit.data.Exhibit
+import com.clooy.toybox.dashboard.exhibit.data.ExhibitItem
 
 @Composable
-fun ExhibitsList(
-    data: List<Exhibit>,
+fun ExhibitList(
+    data: List<ExhibitItem>,
     modifier: Modifier = Modifier,
 ) {
 
     LazyColumn(modifier = modifier) {
         items(data) {
             if (it.isActive) {
-                ExhibitListItem(exhibit = it, modifier = Modifier.padding(8.dp))
+                ExhibitItem(exhibitItem = it, modifier = Modifier.padding(8.dp))
             }
 
             if (it != data.last()) {
@@ -54,8 +54,8 @@ fun ExhibitsList(
 }
 
 @Composable
-fun ExhibitListItem(
-    exhibit: Exhibit,
+fun ExhibitItem(
+    exhibitItem: ExhibitItem,
     modifier: Modifier = Modifier,
 ) {
     var expanded by rememberSaveable { mutableStateOf(false) }
@@ -82,10 +82,10 @@ fun ExhibitListItem(
                     .padding(16.dp)
                     .weight(1f)
             ) {
-                Text(text = exhibit.name, style = MaterialTheme.typography.headlineMedium)
+                Text(text = exhibitItem.name, style = MaterialTheme.typography.headlineMedium)
                 if (expanded) {
                     Spacer(modifier = Modifier.height(32.dp))
-                    Text(text = exhibit.description, style = MaterialTheme.typography.bodyMedium)
+                    Text(text = exhibitItem.description, style = MaterialTheme.typography.bodyMedium)
                 }
             }
             IconButton(
@@ -118,19 +118,19 @@ fun ExhibitListItem(
 )
 @Composable
 fun ExhibitsListPreview() {
-    ExhibitsList(
+    ExhibitList(
         data = listOf(
-            Exhibit(
+            ExhibitItem(
                 name = "NameA",
                 description = "Description",
                 isActive = true,
             ),
-            Exhibit(
+            ExhibitItem(
                 name = "NameB",
                 description = "Description",
                 isActive = true,
             ),
-            Exhibit(
+            ExhibitItem(
                 name = "NameC",
                 description = "Description",
                 isActive = true,

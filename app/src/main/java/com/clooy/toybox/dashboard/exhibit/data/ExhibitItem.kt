@@ -1,6 +1,6 @@
-package com.clooy.toybox.exhibit.data
+package com.clooy.toybox.dashboard.exhibit.data
 
-data class Exhibit(
+data class ExhibitItem(
     val name: String,
     val description: String,
     val isActive: Boolean,

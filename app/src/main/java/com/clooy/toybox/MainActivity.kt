@@ -13,8 +13,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.clooy.toybox.exhibit.ui.ExhibitViewModel
-import com.clooy.toybox.exhibit.ui.ExhibitsScreen
+import com.clooy.toybox.dashboard.DashboardViewModel
+import com.clooy.toybox.dashboard.DashboardScreen
 import com.clooy.toybox.onboarding.ui.OnboardingScreen
 import com.clooy.toybox.ui.theme.ToyBoxTheme
 
@@ -42,7 +42,7 @@ private fun ToyBoxApp(modifier: Modifier = Modifier) {
                 shouldShowOnboarding = false
             })
         } else {
-            ExhibitsScreen(viewModel = ExhibitViewModel())
+            DashboardScreen(viewModel = DashboardViewModel())
         }
     }
 }
