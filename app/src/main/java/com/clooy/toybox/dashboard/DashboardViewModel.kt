@@ -2,7 +2,9 @@ package com.clooy.toybox.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.clooy.toybox.dashboard.DashboardUiEvent.*
 import com.clooy.toybox.dashboard.exhibit.data.ExhibitItem
+import com.clooy.toybox.dashboard.exhibit.data.ExhibitName
 import com.clooy.toybox.dashboard.exhibit.repository.ExhibitListDataSource
 import com.clooy.toybox.dashboard.exhibit.repository.ExhibitListRepository
 import kotlinx.coroutines.flow.Flow
@@ -17,17 +19,17 @@ class DashboardViewModel(
         exhibitListDataSource = ExhibitListDataSource(
             exhibitList = listOf(
                 ExhibitItem(
-                    name = "NameA",
+                    exhibit = ExhibitName.ExhibitA,
                     description = "Description",
                     isActive = true,
                 ),
                 ExhibitItem(
-                    name = "NameB",
+                    exhibit = ExhibitName.ExhibitB,
                     description = "Description",
                     isActive = true,
                 ),
                 ExhibitItem(
-                    name = "NameC",
+                    exhibit = ExhibitName.ExhibitC,
                     description = "Description",
                     isActive = true,
                 )
@@ -49,4 +51,10 @@ class DashboardViewModel(
             initialValue = DashboardUiState.Loading,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
         )
+
+    fun onEvent(event : DashboardUiEvent) {
+        when(event){
+            is OnExhibitItemClicked -> { }
+        }
+    }
 }

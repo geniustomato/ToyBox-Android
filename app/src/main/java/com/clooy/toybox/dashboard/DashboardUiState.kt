@@ -7,6 +7,10 @@ sealed interface DashboardUiState {
     data class Success(val data: DashboardUiData) : DashboardUiState
 }
 
+sealed interface DashboardUiEvent {
+    data class OnExhibitItemClicked(val exhibit: ExhibitItem) : DashboardUiEvent
+}
+
 data class DashboardUiData(
     val exhibits: List<ExhibitItem>
 )

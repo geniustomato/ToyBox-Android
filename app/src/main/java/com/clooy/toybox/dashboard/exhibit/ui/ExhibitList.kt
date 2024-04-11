@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -33,20 +34,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.clooy.toybox.R
 import com.clooy.toybox.dashboard.exhibit.data.ExhibitItem
+import com.clooy.toybox.dashboard.exhibit.data.ExhibitName
 
 @Composable
 fun ExhibitList(
     data: List<ExhibitItem>,
     modifier: Modifier = Modifier,
+    onExhibitItemClicked: (ExhibitItem) -> Unit,
 ) {
-
     LazyColumn(modifier = modifier) {
-        items(data) {
-            if (it.isActive) {
-                ExhibitItem(exhibitItem = it, modifier = Modifier.padding(8.dp))
+        items(data) {exhibit ->
+            if (exhibit.isActive) {
+                ExhibitItem(exhibitItem = exhibit, modifier = Modifier.padding(8.dp)) {
+                    onExhibitItemClicked(exhibit)
+                }
             }
 
-            if (it != data.last()) {
+            if (exhibit != data.last()) {
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
@@ -57,6 +61,7 @@ fun ExhibitList(
 fun ExhibitItem(
     exhibitItem: ExhibitItem,
     modifier: Modifier = Modifier,
+    onEnterExhibitClicked: () -> Unit,
 ) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     Card(
@@ -82,10 +87,14 @@ fun ExhibitItem(
                     .padding(16.dp)
                     .weight(1f)
             ) {
-                Text(text = exhibitItem.name, style = MaterialTheme.typography.headlineMedium)
+                Text(text = exhibitItem.exhibit.name, style = MaterialTheme.typography.headlineMedium)
                 if (expanded) {
                     Spacer(modifier = Modifier.height(32.dp))
                     Text(text = exhibitItem.description, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.height(32.dp))
+                    Button(onClick = onEnterExhibitClicked) {
+                        Text(text = stringResource(R.string.enter))
+                    }
                 }
             }
             IconButton(
@@ -121,20 +130,23 @@ fun ExhibitsListPreview() {
     ExhibitList(
         data = listOf(
             ExhibitItem(
-                name = "NameA",
+                exhibit = ExhibitName.ExhibitA,
                 description = "Description",
                 isActive = true,
             ),
             ExhibitItem(
-                name = "NameB",
+                exhibit = ExhibitName.ExhibitB,
                 description = "Description",
                 isActive = true,
             ),
             ExhibitItem(
-                name = "NameC",
+                exhibit = ExhibitName.ExhibitC,
                 description = "Description",
                 isActive = true,
             )
-        )
+        ),
+        onExhibitItemClicked = {} // Do nothing
     )
 }
+
+

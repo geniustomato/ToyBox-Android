@@ -11,13 +11,18 @@ import com.clooy.toybox.loading.ui.LoadingScreen
 @Composable
 fun DashboardScreen(
     viewModel: DashboardViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEvent:  (DashboardUiEvent) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     when (uiState) {
         DashboardUiState.Loading -> LoadingScreen(modifier = modifier)
-        is DashboardUiState.Success -> DashboardScreen(uiState = uiState, modifier = modifier)
+        is DashboardUiState.Success -> DashboardScreen(
+            uiState = uiState,
+            modifier = modifier,
+            onEvent
+        )
     }
 }
 
@@ -26,11 +31,18 @@ fun DashboardScreen(
 fun DashboardScreen(
     uiState: DashboardUiState,
     modifier: Modifier = Modifier,
+    onEvent: (DashboardUiEvent) -> Unit,
 ) {
     when (uiState) {
         DashboardUiState.Loading -> LoadingScreen()
         is DashboardUiState.Success -> {
-            ExhibitList(data = uiState.data.exhibits, modifier = modifier)
+            ExhibitList(
+                data = uiState.data.exhibits,
+                modifier = modifier,
+                onExhibitItemClicked = { exhibit ->
+                    onEvent(DashboardUiEvent.OnExhibitItemClicked(exhibit))
+                }
+            )
         }
     }
 }
