@@ -40,8 +40,7 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun ToyBoxTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // I'm deactivating dynamic theming for now to make it easier to manage colors consistently
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
