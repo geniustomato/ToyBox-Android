@@ -1,6 +1,6 @@
-package com.clooy.toybox.dashboard.exhibit.repository
+package com.clooy.toybox.feature.dashboard.exhibit.repository
 
-import com.clooy.toybox.dashboard.exhibit.data.ExhibitItem
+import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

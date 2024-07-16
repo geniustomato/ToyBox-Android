@@ -15,12 +15,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.clooy.toybox.dashboard.DashboardScreen
-import com.clooy.toybox.dashboard.DashboardUiEvent
-import com.clooy.toybox.dashboard.DashboardViewModel
-import com.clooy.toybox.dashboard.exhibit.data.ExhibitName
-import com.clooy.toybox.exhibitA.ExhibitAScreen
-import com.clooy.toybox.onboarding.ui.OnboardingScreen
+import com.clooy.toybox.feature.dashboard.DashboardScreen
+import com.clooy.toybox.feature.dashboard.DashboardUiEvent
+import com.clooy.toybox.feature.dashboard.DashboardViewModel
+import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitName
+import com.clooy.toybox.feature.exhibitA.ExhibitAScreen
+import com.clooy.toybox.feature.onboarding.ui.OnboardingScreen
 import com.clooy.toybox.core.designsystem.theme.ToyBoxTheme
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package com.clooy.toybox.onboarding.ui
+package com.clooy.toybox.feature.onboarding.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

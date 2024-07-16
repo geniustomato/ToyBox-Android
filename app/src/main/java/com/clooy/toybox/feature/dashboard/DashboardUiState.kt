@@ -1,6 +1,6 @@
-package com.clooy.toybox.dashboard
+package com.clooy.toybox.feature.dashboard
 
-import com.clooy.toybox.dashboard.exhibit.data.ExhibitItem
+import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitItem
 
 sealed interface DashboardUiState {
     object Loading : DashboardUiState

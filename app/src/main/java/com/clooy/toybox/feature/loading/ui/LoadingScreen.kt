@@ -1,4 +1,4 @@
-package com.clooy.toybox.loading.ui
+package com.clooy.toybox.feature.loading.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import com.clooy.toybox.R
 
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
+fun LoadingScreen(modifier: Modifier = Modifier) { // TODO Not really sure yet where to place this...
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

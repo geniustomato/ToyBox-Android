@@ -1,11 +1,11 @@
-package com.clooy.toybox.dashboard
+package com.clooy.toybox.feature.dashboard
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.clooy.toybox.dashboard.exhibit.ui.ExhibitList
-import com.clooy.toybox.loading.ui.LoadingScreen
+import com.clooy.toybox.feature.dashboard.exhibit.ui.ExhibitList
+import com.clooy.toybox.feature.loading.ui.LoadingScreen
 
 // Stateful Version
 @Composable

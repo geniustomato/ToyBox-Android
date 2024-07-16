@@ -1,12 +1,12 @@
-package com.clooy.toybox.dashboard
+package com.clooy.toybox.feature.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.clooy.toybox.dashboard.DashboardUiEvent.*
-import com.clooy.toybox.dashboard.exhibit.data.ExhibitItem
-import com.clooy.toybox.dashboard.exhibit.data.ExhibitName
-import com.clooy.toybox.dashboard.exhibit.repository.ExhibitListDataSource
-import com.clooy.toybox.dashboard.exhibit.repository.ExhibitListRepository
+import com.clooy.toybox.feature.dashboard.DashboardUiEvent.*
+import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitItem
+import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitName
+import com.clooy.toybox.feature.dashboard.exhibit.repository.ExhibitListDataSource
+import com.clooy.toybox.feature.dashboard.exhibit.repository.ExhibitListRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
