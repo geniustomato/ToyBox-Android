@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navOptions
 import com.clooy.toybox.feature.dashboard.DashboardNavigationEvent
@@ -15,14 +14,16 @@ import com.clooy.toybox.feature.exhibitA.navigation.exhibitAScreen
 import com.clooy.toybox.feature.exhibitA.navigation.navigateToExhibitA
 import com.clooy.toybox.feature.onboarding.navigation.ONBOARDING_ROUTE
 import com.clooy.toybox.feature.onboarding.navigation.onboardingScreen
+import com.clooy.toybox.ui.ToyBoxAppState
 
 @Composable
 fun ToyBoxNavHost(
     modifier: Modifier = Modifier,
-    navController: NavHostController, // TODO Eventually replace this with an AppState encapsulating the navController
+    appState: ToyBoxAppState,
     startDestination: String = ONBOARDING_ROUTE
 ) {
     val context = LocalContext.current
+    val navController = appState.navController
 
     NavHost(
         modifier = modifier,
