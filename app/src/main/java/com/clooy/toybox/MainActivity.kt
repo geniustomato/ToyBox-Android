@@ -21,7 +21,7 @@ import com.clooy.toybox.dashboard.DashboardViewModel
 import com.clooy.toybox.dashboard.exhibit.data.ExhibitName
 import com.clooy.toybox.exhibitA.ExhibitAScreen
 import com.clooy.toybox.onboarding.ui.OnboardingScreen
-import com.clooy.toybox.ui.theme.ToyBoxTheme
+import com.clooy.toybox.core.designsystem.theme.ToyBoxTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
