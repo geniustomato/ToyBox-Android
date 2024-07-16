@@ -43,7 +43,7 @@ fun ExhibitList(
     onExhibitItemClicked: (ExhibitItem) -> Unit,
 ) {
     LazyColumn(modifier = modifier) {
-        items(data) {exhibit ->
+        items(data) { exhibit ->
             if (exhibit.isActive) {
                 ExhibitItem(exhibitItem = exhibit, modifier = Modifier.padding(8.dp)) {
                     onExhibitItemClicked(exhibit)
@@ -87,10 +87,16 @@ fun ExhibitItem(
                     .padding(16.dp)
                     .weight(1f)
             ) {
-                Text(text = exhibitItem.exhibit.name, style = MaterialTheme.typography.headlineMedium)
+                Text(
+                    text = exhibitItem.exhibit.name,
+                    style = MaterialTheme.typography.headlineMedium
+                )
                 if (expanded) {
                     Spacer(modifier = Modifier.height(32.dp))
-                    Text(text = exhibitItem.description, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = exhibitItem.description,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                     Spacer(modifier = Modifier.height(32.dp))
                     Button(onClick = onEnterExhibitClicked) {
                         Text(text = stringResource(R.string.enter))

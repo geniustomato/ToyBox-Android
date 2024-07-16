@@ -2,7 +2,7 @@ package com.clooy.toybox.feature.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.clooy.toybox.feature.dashboard.DashboardUiEvent.*
+import com.clooy.toybox.feature.dashboard.DashboardNavigationEvent.OnEnterExhibit
 import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitItem
 import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitName
 import com.clooy.toybox.feature.dashboard.exhibit.repository.ExhibitListDataSource
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 class DashboardViewModel(
-    // TODO I think this needs some DI magic
+    // TODO I think this needs some DI magic w/ Hilt
     private val exhibitListRepository: ExhibitListRepository = ExhibitListRepository(
         exhibitListDataSource = ExhibitListDataSource(
             exhibitList = listOf(
@@ -51,10 +51,4 @@ class DashboardViewModel(
             initialValue = DashboardUiState.Loading,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
         )
-
-    fun onEvent(event : DashboardUiEvent) {
-        when(event){
-            is OnExhibitItemClicked -> { }
-        }
-    }
 }
