@@ -33,21 +33,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.clooy.toybox.R
-import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitItem
-import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitName
+import com.clooy.toybox.feature.dashboard.exhibit.data.Exhibit
+import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitId
+import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitId.*
 
 @Composable
 fun ExhibitList(
-    data: List<ExhibitItem>,
+    data: List<Exhibit>,
     modifier: Modifier = Modifier,
-    onExhibitItemClicked: (ExhibitItem) -> Unit,
+    onEnterExhibitClicked: (ExhibitId) -> Unit,
 ) {
     LazyColumn(modifier = modifier) {
         items(data) { exhibit ->
             if (exhibit.isActive) {
-                ExhibitItem(exhibitItem = exhibit, modifier = Modifier.padding(8.dp)) {
-                    onExhibitItemClicked(exhibit)
-                }
+                ExhibitItem(
+                    exhibit = exhibit,
+                    modifier = Modifier.padding(8.dp),
+                    onEnterExhibitClicked = { onEnterExhibitClicked(exhibit.id) }
+                )
             }
 
             if (exhibit != data.last()) {
@@ -59,7 +62,7 @@ fun ExhibitList(
 
 @Composable
 fun ExhibitItem(
-    exhibitItem: ExhibitItem,
+    exhibit: Exhibit,
     modifier: Modifier = Modifier,
     onEnterExhibitClicked: () -> Unit,
 ) {
@@ -88,13 +91,13 @@ fun ExhibitItem(
                     .weight(1f)
             ) {
                 Text(
-                    text = exhibitItem.exhibit.name,
+                    text = exhibit.name,
                     style = MaterialTheme.typography.headlineMedium
                 )
                 if (expanded) {
                     Spacer(modifier = Modifier.height(32.dp))
                     Text(
-                        text = exhibitItem.description,
+                        text = exhibit.description,
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(modifier = Modifier.height(32.dp))
@@ -135,23 +138,26 @@ fun ExhibitItem(
 fun ExhibitsListPreview() {
     ExhibitList(
         data = listOf(
-            ExhibitItem(
-                exhibit = ExhibitName.ExhibitA,
+            Exhibit(
+                id = ExhibitA,
+                name = "Exhibit A",
                 description = "Description",
                 isActive = true,
             ),
-            ExhibitItem(
-                exhibit = ExhibitName.ExhibitB,
+            Exhibit(
+                id = ExhibitB,
+                name = "Exhibit B",
                 description = "Description",
                 isActive = true,
             ),
-            ExhibitItem(
-                exhibit = ExhibitName.ExhibitC,
+            Exhibit(
+                id = ExhibitC,
+                name = "Exhibit C",
                 description = "Description",
                 isActive = true,
             )
         ),
-        onExhibitItemClicked = {} // Do nothing
+        onEnterExhibitClicked = {} // Do nothing
     )
 }
 

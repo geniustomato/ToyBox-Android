@@ -10,10 +10,9 @@ import com.clooy.toybox.feature.loading.ui.LoadingScreen
 // Stateful Version
 @Composable
 internal fun DashboardRoute(
-    // TODO Also a stateful version? Only should exist??
     modifier: Modifier = Modifier,
     viewModel: DashboardViewModel = DashboardViewModel(), // TODO Figure out how to use hiltViewModel() here...
-    onEvent: (DashboardNavigationEvent) -> Unit,
+    onNavigationEvent: (DashboardNavigationEvent) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -22,7 +21,7 @@ internal fun DashboardRoute(
         is DashboardUiState.Success -> DashboardScreen(
             uiState = uiState,
             modifier = modifier,
-            onEvent = onEvent
+            onNavigationEvent = onNavigationEvent
         )
     }
 }
@@ -32,7 +31,7 @@ internal fun DashboardRoute(
 fun DashboardScreen(
     uiState: DashboardUiState,
     modifier: Modifier = Modifier,
-    onEvent: (DashboardNavigationEvent) -> Unit,
+    onNavigationEvent: (DashboardNavigationEvent) -> Unit,
 ) {
     when (uiState) {
         DashboardUiState.Loading -> LoadingScreen()
@@ -40,9 +39,9 @@ fun DashboardScreen(
             ExhibitList(
                 data = uiState.data.exhibits,
                 modifier = modifier,
-                onExhibitItemClicked = { exhibit ->
-                    onEvent(DashboardNavigationEvent.OnEnterExhibit(exhibit))
-                }
+                onEnterExhibitClicked = { id ->
+                    onNavigationEvent(DashboardNavigationEvent.OnEnterExhibit(exhibitId = id))
+                },
             )
         }
     }
