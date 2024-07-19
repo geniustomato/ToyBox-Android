@@ -5,15 +5,17 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.clooy.toybox.feature.exhibitA.ExhibitAScreen
+import kotlinx.serialization.Serializable
 
-const val EXHIBIT_A_ROUTE = "exhibitA"
+@Serializable
+object ExhibitARoute
 
 fun NavGraphBuilder.exhibitAScreen() {
-    composable(EXHIBIT_A_ROUTE) {
+    composable<ExhibitARoute> {
         ExhibitAScreen()
     }
 }
 
 fun NavController.navigateToExhibitA(navOptions: NavOptions) {
-    navigate(route = EXHIBIT_A_ROUTE, navOptions = navOptions)
+    navigate(route = ExhibitARoute, navOptions = navOptions)
 }

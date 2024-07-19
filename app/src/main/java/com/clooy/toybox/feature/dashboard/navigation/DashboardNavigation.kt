@@ -10,13 +10,15 @@ import com.clooy.toybox.feature.dashboard.DashboardNavigationEvent
 import com.clooy.toybox.feature.dashboard.DashboardRoute
 import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitId.ExhibitA
 import com.clooy.toybox.feature.exhibitA.navigation.navigateToExhibitA
+import kotlinx.serialization.Serializable
 
-const val DASHBOARD_ROUTE = "dashboard"
+@Serializable
+object DashboardRoute
 
 fun NavGraphBuilder.dashboardScreen(
     navController: NavHostController,
 ) {
-    composable(DASHBOARD_ROUTE) {
+    composable<DashboardRoute> {
         DashboardRoute(onNavigationEvent = navController::handleDashboardNavigationEvent)
     }
 }
@@ -24,7 +26,7 @@ fun NavGraphBuilder.dashboardScreen(
 
 fun NavController.navigateToDashboardScreen() =
     navigate(
-        route = DASHBOARD_ROUTE,
+        route = DashboardRoute,
         navOptions = navOptions {
             // Will always be first in the backstack
             popUpTo(id = graph.startDestinationId) {

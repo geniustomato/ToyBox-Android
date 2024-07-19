@@ -7,15 +7,17 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.clooy.toybox.feature.dashboard.navigation.navigateToDashboardScreen
 import com.clooy.toybox.feature.onboarding.ui.OnboardingScreen
+import kotlinx.serialization.Serializable
 
-const val ONBOARDING_ROUTE = "onboarding"
+@Serializable
+object OnboardingRoute
 
 fun NavGraphBuilder.onboardingScreen(navController: NavHostController) {
-    composable(ONBOARDING_ROUTE) {
+    composable<OnboardingRoute> {
         OnboardingScreen(onContinueClicked = navController::navigateToDashboardScreen)
     }
 }
 
 fun NavController.navigateToOnboardingScreen(navOptions: NavOptions) {
-    navigate(route = ONBOARDING_ROUTE, navOptions = navOptions)
+    navigate(route = OnboardingRoute, navOptions = navOptions)
 }
