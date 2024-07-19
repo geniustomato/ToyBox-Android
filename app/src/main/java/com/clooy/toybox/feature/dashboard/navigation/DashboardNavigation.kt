@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navOptions
 import com.clooy.toybox.feature.dashboard.DashboardNavigationEvent
@@ -23,8 +22,16 @@ fun NavGraphBuilder.dashboardScreen(
 }
 
 
-fun NavController.navigateToDashboardScreen(navOptions: NavOptions? = null) =
-    navigate(route = DASHBOARD_ROUTE, navOptions = navOptions)
+fun NavController.navigateToDashboardScreen() =
+    navigate(
+        route = DASHBOARD_ROUTE,
+        navOptions = navOptions {
+            // Will always be first in the backstack
+            popUpTo(id = graph.startDestinationId) {
+                inclusive = true
+            }
+        }
+    )
 
 private fun NavHostController.handleDashboardNavigationEvent(
     event: DashboardNavigationEvent
