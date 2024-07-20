@@ -17,7 +17,3 @@ fun NavGraphBuilder.onboardingScreen(navController: NavHostController) {
         OnboardingScreen(onContinueClicked = navController::navigateToDashboardScreen)
     }
 }
-
-fun NavController.navigateToOnboardingScreen(navOptions: NavOptions) {
-    navigate(route = OnboardingRoute, navOptions = navOptions)
-}

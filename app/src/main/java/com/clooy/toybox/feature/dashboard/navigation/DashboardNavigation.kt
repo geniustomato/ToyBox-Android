@@ -41,7 +41,7 @@ private fun NavHostController.handleDashboardNavigationEvent(
     when (event) {
         is DashboardNavigationEvent.OnEnterExhibit -> {
             when (event.exhibitId) {
-                ExhibitA -> navigateToExhibitA(navOptions = navOptions { })
+                ExhibitA -> navigateToExhibitA()
                 else -> Toast.makeText(context, "Not Available", Toast.LENGTH_SHORT).show()
             }
         }

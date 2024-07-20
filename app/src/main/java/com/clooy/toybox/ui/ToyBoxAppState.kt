@@ -9,7 +9,8 @@ import androidx.navigation.compose.rememberNavController
 fun rememberToyBoxAppState(
     navController: NavHostController = rememberNavController()
 ): ToyBoxAppState {
-    return remember( // TODO Wouldn't it be redundant to call remember again for navController when rememberNavController() was already called?
+    // TODO Double check if triggering remember for NavController twice - rememberNavController() + remember(...) - is good
+    return remember(
         navController
     ) {
         ToyBoxAppState(navController = navController)

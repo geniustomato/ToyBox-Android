@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import com.clooy.toybox.R
 
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) { // TODO Not really sure yet where to place this...
+fun LoadingScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

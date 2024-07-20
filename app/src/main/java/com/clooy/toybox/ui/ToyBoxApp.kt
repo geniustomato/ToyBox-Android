@@ -11,7 +11,6 @@ internal fun ToyBoxApp(
     modifier: Modifier = Modifier,
     appState: ToyBoxAppState,
 ) {
-    // TODO Why again do I have a Surface wrapper here?
     Surface(
         modifier = modifier, color = MaterialTheme.colorScheme.background
     ) {

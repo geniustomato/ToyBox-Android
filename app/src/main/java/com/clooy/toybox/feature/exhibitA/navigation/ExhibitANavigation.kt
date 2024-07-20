@@ -2,7 +2,6 @@ package com.clooy.toybox.feature.exhibitA.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.clooy.toybox.feature.exhibitA.ExhibitAScreen
 import kotlinx.serialization.Serializable
@@ -16,6 +15,6 @@ fun NavGraphBuilder.exhibitAScreen() {
     }
 }
 
-fun NavController.navigateToExhibitA(navOptions: NavOptions) {
-    navigate(route = ExhibitARoute, navOptions = navOptions)
+fun NavController.navigateToExhibitA() {
+    navigate(route = ExhibitARoute)
 }
