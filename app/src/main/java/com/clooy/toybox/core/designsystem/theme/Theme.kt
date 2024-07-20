@@ -1,4 +1,4 @@
-package com.clooy.toybox.ui.theme
+package com.clooy.toybox.core.designsystem.theme
 
 import android.app.Activity
 import android.os.Build

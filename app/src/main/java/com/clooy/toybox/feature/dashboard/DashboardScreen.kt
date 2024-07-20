@@ -1,18 +1,18 @@
-package com.clooy.toybox.dashboard
+package com.clooy.toybox.feature.dashboard
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.clooy.toybox.dashboard.exhibit.ui.ExhibitList
-import com.clooy.toybox.loading.ui.LoadingScreen
+import com.clooy.toybox.feature.dashboard.exhibit.ui.ExhibitList
+import com.clooy.toybox.feature.loading.ui.LoadingScreen
 
 // Stateful Version
 @Composable
-fun DashboardScreen(
-    viewModel: DashboardViewModel,
+internal fun DashboardRoute(
     modifier: Modifier = Modifier,
-    onEvent:  (DashboardUiEvent) -> Unit
+    viewModel: DashboardViewModel = DashboardViewModel(), // TODO Figure out how to use hiltViewModel() here...
+    onNavigationEvent: (DashboardNavigationEvent) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -21,7 +21,7 @@ fun DashboardScreen(
         is DashboardUiState.Success -> DashboardScreen(
             uiState = uiState,
             modifier = modifier,
-            onEvent
+            onNavigationEvent = onNavigationEvent
         )
     }
 }
@@ -31,7 +31,7 @@ fun DashboardScreen(
 fun DashboardScreen(
     uiState: DashboardUiState,
     modifier: Modifier = Modifier,
-    onEvent: (DashboardUiEvent) -> Unit,
+    onNavigationEvent: (DashboardNavigationEvent) -> Unit,
 ) {
     when (uiState) {
         DashboardUiState.Loading -> LoadingScreen()
@@ -39,9 +39,9 @@ fun DashboardScreen(
             ExhibitList(
                 data = uiState.data.exhibits,
                 modifier = modifier,
-                onExhibitItemClicked = { exhibit ->
-                    onEvent(DashboardUiEvent.OnExhibitItemClicked(exhibit))
-                }
+                onEnterExhibitClicked = { id ->
+                    onNavigationEvent(DashboardNavigationEvent.OnEnterExhibit(exhibitId = id))
+                },
             )
         }
     }

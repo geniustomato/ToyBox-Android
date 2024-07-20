@@ -1,4 +1,4 @@
-package com.clooy.toybox.exhibitA
+package com.clooy.toybox.feature.exhibitA
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
