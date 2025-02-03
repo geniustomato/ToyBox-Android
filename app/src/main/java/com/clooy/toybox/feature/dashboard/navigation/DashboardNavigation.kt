@@ -35,7 +35,7 @@ fun NavController.navigateToDashboardScreen() =
         }
     )
 
-private fun NavHostController.handleDashboardNavigationEvent(
+private fun NavController.handleDashboardNavigationEvent(
     event: DashboardNavigationEvent
 ) {
     when (event) {
