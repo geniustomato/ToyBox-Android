@@ -4,7 +4,7 @@ import com.clooy.toybox.feature.dashboard.exhibit.data.Exhibit
 import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitId
 
 sealed interface DashboardUiState {
-    object Loading : DashboardUiState
+    data object Loading : DashboardUiState
     data class Success(val data: DashboardUiData) : DashboardUiState
 }
 
