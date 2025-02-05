@@ -1,6 +1,6 @@
 [versions]
 androidxActivityCompose = "1.9.0"
-androidGradlePlugin = "8.5.1"
+androidGradlePlugin = "8.7.3"
 androidxComposeBom = "2024.06.00"
 androidxCoreKtx = "1.13.1"
 androidxEspressoCore = "3.6.1"
