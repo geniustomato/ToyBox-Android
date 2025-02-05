@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.clooy.toybox"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.clooy.toybox"
