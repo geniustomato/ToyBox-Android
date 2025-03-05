@@ -1,4 +1,4 @@
-package com.clooy.toybox.feature.dashboard
+package com.clooy.toybox.feature.dashboard.presentation.dashboard.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -12,9 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.clooy.toybox.feature.dashboard.exhibit.data.Exhibit
-import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitId
-import com.clooy.toybox.feature.dashboard.exhibit.ui.ExhibitList
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.event.DashboardScreenEvent
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.DashboardToolbar
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.DashboardUiModel
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.ExhibitId
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.ExhibitUiModel
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.ExhibitViewType
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.state.DashboardState
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.viewmodels.DashboardViewModel
 import com.clooy.toybox.feature.loading.ui.LoadingScreen
 
 // Stateful Version
@@ -22,13 +27,13 @@ import com.clooy.toybox.feature.loading.ui.LoadingScreen
 internal fun DashboardRoute(
     modifier: Modifier = Modifier,
     viewModel: DashboardViewModel = DashboardViewModel(), // TODO Figure out how to use hiltViewModel() here...
-    onNavigationEvent: (DashboardNavigationEvent) -> Unit,
+    onNavigationEvent: (DashboardScreenEvent.Navigation) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     when (uiState) {
-        DashboardUiState.Loading -> LoadingScreen(modifier = modifier)
-        is DashboardUiState.Success -> DashboardScreen(
+        DashboardState.Loading -> LoadingScreen(modifier = modifier)
+        is DashboardState.Success -> DashboardScreen(
             uiState = uiState,
             modifier = modifier,
             onNavigationEvent = onNavigationEvent
@@ -38,34 +43,34 @@ internal fun DashboardRoute(
 
 // Stateless Version
 @Composable
-fun DashboardScreen(
-    uiState: DashboardUiState,
+private fun DashboardScreen(
+    uiState: DashboardState,
     modifier: Modifier = Modifier,
-    onNavigationEvent: (DashboardNavigationEvent) -> Unit,
+    onNavigationEvent: (DashboardScreenEvent.Navigation) -> Unit,
 ) {
     when (uiState) {
-        DashboardUiState.Loading -> LoadingScreen()
-        is DashboardUiState.Success -> {
+        DashboardState.Loading -> LoadingScreen()
+        is DashboardState.Success -> {
             var settingsData by rememberSaveable { mutableStateOf(uiState.data.settings) }
 
             DashboardScaffold(
                 settingsData = settingsData,
                 onDashboardToolbarEvent = { event ->
                     when (event) {
-                        is DashboardToolbarEvent.OnDashboardSettingsUpdate -> {
+                        is DashboardScreenEvent.Toolbar.OnSettingsUpdate -> {
                             settingsData = event.data
                         }
                     }
                 },
                 content = { padding ->
                     Column(modifier = modifier.padding(padding)) {
-                        when (settingsData.selectedViewType) {
-                            ViewType.LIST -> {
+                        when (settingsData.selectedExhibitViewType) {
+                            ExhibitViewType.LIST -> {
                                 ExhibitList(
                                     data = uiState.data.exhibits,
                                     onEnterExhibitClicked = { id ->
                                         onNavigationEvent(
-                                            DashboardNavigationEvent.OnEnterExhibit(
+                                            DashboardScreenEvent.Navigation.OnEnterExhibit(
                                                 exhibitId = id
                                             )
                                         )
@@ -73,7 +78,7 @@ fun DashboardScreen(
                                 )
                             }
 
-                            ViewType.GALLERY -> {
+                            ExhibitViewType.GALLERY -> {
                                 Toast.makeText(
                                     LocalContext.current,
                                     "Gallery is not available",
@@ -93,19 +98,17 @@ fun DashboardScreen(
 @Composable
 private fun DashboardScreenPreview() {
     DashboardScreen(
-        uiState = DashboardUiState.Success(
-            data = DashboardUiData(
+        uiState = DashboardState.Success(
+            data = DashboardUiModel(
                 exhibits = listOf(
-                    Exhibit(
+                    ExhibitUiModel(
                         id = ExhibitId.ExhibitA,
                         name = "Exhibit Name",
                         description = "Description",
                         isActive = true,
                     )
                 ),
-                settings = DashboardToolbarData.Settings(
-                    selectedViewType = ViewType.GALLERY
-                )
+                settings = DashboardToolbar.Settings(selectedExhibitViewType = ExhibitViewType.LIST)
             )
         ),
         onNavigationEvent = { /* Do Nothing */ },

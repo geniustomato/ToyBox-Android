@@ -1,4 +1,4 @@
-package com.clooy.toybox.feature.dashboard.exhibit.ui
+package com.clooy.toybox.feature.dashboard.presentation.dashboard.ui
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
@@ -33,13 +33,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.clooy.toybox.R
-import com.clooy.toybox.feature.dashboard.exhibit.data.Exhibit
-import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitId
-import com.clooy.toybox.feature.dashboard.exhibit.data.ExhibitId.*
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.ExhibitId
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.ExhibitId.*
+import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.ExhibitUiModel
 
 @Composable
-fun ExhibitList(
-    data: List<Exhibit>,
+internal fun ExhibitList(
+    data: List<ExhibitUiModel>,
     modifier: Modifier = Modifier,
     onEnterExhibitClicked: (ExhibitId) -> Unit,
 ) {
@@ -61,8 +61,8 @@ fun ExhibitList(
 }
 
 @Composable
-fun ExhibitItem(
-    exhibit: Exhibit,
+internal fun ExhibitItem(
+    exhibit: ExhibitUiModel,
     modifier: Modifier = Modifier,
     onEnterExhibitClicked: () -> Unit,
 ) {
@@ -135,22 +135,22 @@ fun ExhibitItem(
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Composable
-fun ExhibitsListPreview() {
+private fun ExhibitsListPreview() {
     ExhibitList(
         data = listOf(
-            Exhibit(
+            ExhibitUiModel(
                 id = ExhibitA,
                 name = "Exhibit A",
                 description = "Description",
                 isActive = true,
             ),
-            Exhibit(
+            ExhibitUiModel(
                 id = ExhibitB,
                 name = "Exhibit B",
                 description = "Description",
                 isActive = true,
             ),
-            Exhibit(
+            ExhibitUiModel(
                 id = ExhibitC,
                 name = "Exhibit C",
                 description = "Description",
@@ -160,5 +160,3 @@ fun ExhibitsListPreview() {
         onEnterExhibitClicked = {} // Do nothing
     )
 }
-
-
