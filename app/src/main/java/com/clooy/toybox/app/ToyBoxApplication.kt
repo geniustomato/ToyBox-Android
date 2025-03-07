@@ -1,7 +1,7 @@
 package com.clooy.toybox.app
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class ToyBoxApplication : Application() {
-    // TODO Add future setups here...
-}
+@HiltAndroidApp
+class ToyBoxApplication : Application()

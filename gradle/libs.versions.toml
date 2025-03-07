@@ -4,14 +4,16 @@ androidGradlePlugin = "8.7.3"
 androidxComposeBom = "2025.01.01"
 androidxCoreKtx = "1.15.0"
 androidxEspressoCore = "3.6.1"
+androidxNavigationCompose = "2.8.6"
+androidxHiltNavigationCompose = "1.2.0"
 kotlin = "2.1.0"
 kotlinxCoroutinesAndroid = "1.10.1"
 androidxLifecycleRuntimeKtx = "2.8.7"
 kotlinxSerializationJson = "1.8.0"
-androidxNavigationCompose = "2.8.6"
 junit4 = "4.13.2"
 junitExt = "1.2.1"
 jetbrainsKotlinJvm = "2.1.0"
+googleDaggerHilt = "2.55"
 
 [libraries]
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycleRuntimeKtx" }
@@ -28,10 +30,15 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
 androidx-compose-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose"}
 
 # Kotlin
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+# Dagger Hilt
+google-dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "googleDaggerHilt" }
+google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "googleDaggerHilt" }
 
 # Testing
 junit = { module = "junit:junit", version.ref = "junit4" }
@@ -42,9 +49,11 @@ androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
-kotlin-android = {id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlin-parcelize = { id = "kotlin-parcelize"}
+kotlin-parcelize = { id = "kotlin-parcelize" }
+kotlin-kapt = { id = "kotlin-kapt" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+google-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "googleDaggerHilt" }
 

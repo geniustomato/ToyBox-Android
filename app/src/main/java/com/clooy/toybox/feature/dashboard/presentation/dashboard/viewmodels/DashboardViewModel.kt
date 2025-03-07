@@ -2,22 +2,20 @@ package com.clooy.toybox.feature.dashboard.presentation.dashboard.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.clooy.toybox.feature.dashboard.data.remote.DashboardService
-import com.clooy.toybox.feature.dashboard.data.repository.DashboardRepositoryImpl
 import com.clooy.toybox.feature.dashboard.domain.usecase.GetDashboardUseCase
 import com.clooy.toybox.feature.dashboard.presentation.dashboard.mapper.toDashboardUiModel
 import com.clooy.toybox.feature.dashboard.presentation.dashboard.state.DashboardState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-internal class DashboardViewModel(
-    // TODO I think this needs some DI magic w/ Hilt
-    private val getDashboardUseCase: GetDashboardUseCase = GetDashboardUseCase(
-        dashboardRepository = DashboardRepositoryImpl(DashboardService())
-    )
+@HiltViewModel
+internal class DashboardViewModel @Inject constructor(
+    private val getDashboardUseCase: GetDashboardUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<DashboardState>(DashboardState.Loading)

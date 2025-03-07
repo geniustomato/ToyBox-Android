@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.clooy.toybox.feature.dashboard.presentation.dashboard.event.DashboardScreenEvent
 import com.clooy.toybox.feature.dashboard.presentation.dashboard.model.DashboardToolbar
@@ -26,7 +27,7 @@ import com.clooy.toybox.feature.loading.ui.LoadingScreen
 @Composable
 internal fun DashboardRoute(
     modifier: Modifier = Modifier,
-    viewModel: DashboardViewModel = DashboardViewModel(), // TODO Figure out how to use hiltViewModel() here...
+    viewModel: DashboardViewModel = hiltViewModel(),
     onNavigationEvent: (DashboardScreenEvent.Navigation) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
