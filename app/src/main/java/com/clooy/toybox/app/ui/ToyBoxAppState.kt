@@ -1,4 +1,4 @@
-package com.clooy.toybox.ui
+package com.clooy.toybox.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

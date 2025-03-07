@@ -1,4 +1,4 @@
-package com.clooy.toybox
+package com.clooy.toybox.app
 
 import android.app.Application
 

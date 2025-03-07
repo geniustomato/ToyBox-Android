@@ -3,7 +3,7 @@ package com.clooy.toybox.feature.onboarding.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.clooy.toybox.feature.dashboard.navigation.navigateToDashboardScreen
+import com.clooy.toybox.feature.dashboard.presentation.navigation.navigateToDashboardScreen
 import com.clooy.toybox.feature.onboarding.ui.OnboardingScreen
 import kotlinx.serialization.Serializable
 
