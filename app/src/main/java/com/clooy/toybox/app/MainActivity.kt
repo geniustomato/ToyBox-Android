@@ -8,7 +8,9 @@ import androidx.compose.ui.Modifier
 import com.clooy.toybox.core.designsystem.theme.ToyBoxTheme
 import com.clooy.toybox.app.ui.ToyBoxApp
 import com.clooy.toybox.app.ui.rememberToyBoxAppState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
